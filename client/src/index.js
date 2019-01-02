@@ -5,8 +5,8 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 //import HOC auth
-import Auth from "./Authenticate/Auth";
-const HOC = Auth(App);
+import Authenticate from "./Authenticate/Auth";
+const HOC = Authenticate(App);
 
 ReactDOM.render(<HOC />, document.getElementById("root"));
 
