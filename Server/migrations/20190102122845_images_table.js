@@ -5,13 +5,13 @@ exports.up = function(knex, Promise) {
     tbl.integer("true");
     tbl.integer("false");
     tbl
-      .integer("collectionID")
+      .integer("usersID")
       .unsigned()
       .notNullable()
-      .refereneces("id")
+      .references("id")
       .inTable("users")
       .onUpdate("CASCADE")
-      .onDELETE("CASCADE");
+      .onDelete("CASCADE");
   });
 };
 
