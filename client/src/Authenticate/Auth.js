@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Register from "./AuthWrapper/Register";
 import Login from "./AuthWrapper/Login";
+import { AuthContainer } from "../Styling/ReusableStyles";
 
 const Authenticate = App =>
   class extends Component {
@@ -19,10 +20,12 @@ const Authenticate = App =>
       }
     }
     //login function
-    login = () => {
+    login = props => {
       //does an axios call to the database, compare hashed pw with function to unhash pw and set loggedIn to true if it is correct
-      // localStorage.setItem("user", response.data)
-      // localStorage.setItem("password", response.data)
+      // localStorage.setItem("user", response.data);
+      // localStorage.setItem("password", response.data);
+      localStorage.setItem("user", props.usernameInput);
+      localStorage.setItem("password", props.passwordInput);
       this.setState({ loggedIn: true });
     };
     //logout function
@@ -36,17 +39,17 @@ const Authenticate = App =>
         username: newUser.usernameInput,
         password: newUser.passwordInput
       };
-      console.log(registerNewUser);
+      // console.log(registerNewUser);
       //axios call to post new user to database
     };
 
     render() {
       if (this.state.loggedIn) return <App logout={this.logout} />;
       return (
-        <div>
+        <AuthContainer>
           <Register registerNewUser={this.registerNewUser} login={this.login} />
           <Login login={this.login} />
-        </div>
+        </AuthContainer>
       );
     }
   };
