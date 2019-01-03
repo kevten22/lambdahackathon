@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FormInput, FormContainer } from "../../Styling/ReusableStyles";
 
 class Login extends Component {
   constructor(props) {
@@ -18,9 +19,9 @@ class Login extends Component {
   };
   render() {
     return (
-      <div>
+      <FormContainer>
         <div>Login Component</div>
-        <form action="" onSubmit={this.handleLoginSubmitForm(this.props)}>
+        <FormInput action="" onSubmit={this.handleLoginSubmitForm(this.props)}>
           <input
             type="text"
             name="usernameInput"
@@ -38,8 +39,8 @@ class Login extends Component {
             required
           />
           <button>Login</button>
-        </form>
-      </div>
+        </FormInput>
+      </FormContainer>
     );
   }
 }
