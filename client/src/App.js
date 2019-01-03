@@ -10,7 +10,9 @@ class App extends Component {
     };
   }
   // component did mount update this.state.user to the login user.
-  componentDidMount() {}
+  componentDidMount() {
+    this.setState({ user: localStorage.getItem("user") });
+  }
   //filter function to filter from the datasets, to render only the user's datasets
 
   render() {
