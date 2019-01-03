@@ -1,8 +1,18 @@
-const express = require('express');
-
+//import express framework
+const express = require("express");
 const server = express();
+//import helmet, morgan cors
+const helmet = require("helmet");
+const morgan = require("morgan");
+const cors = require("cors");
 const bodyParser = require('body-parser');
+const collections = require("./routes/collections");
 
+server.use(express.json());
+server.use(helmet());
+server.use(morgan("dev"));
+server.use(cors({ origin: "http:localhost:3000", credentials: true }));
+server.use("/collections", collections);
 server.use(bodyParser.json());
 
 server.get('/users', async (req, res) => {
@@ -203,4 +213,4 @@ server.delete('/images/:id', async (req, res) => {
 
 
 
-server.listen(8000, () => console.log('API running on port 8000'));
+server.listen(9000, () => console.log("api running..."));
