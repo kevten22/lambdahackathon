@@ -2,14 +2,15 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable("images", tbl => {
     tbl.increments();
     tbl.string("imageURL").notNullable();
+    tbl.string("questionParam").notNullable();
     tbl.integer("true");
     tbl.integer("false");
     tbl
-      .integer("usersID")
+      .integer("collectionsID")
       .unsigned()
       .notNullable()
       .references("id")
-      .inTable("users")
+      .inTable("collections")
       .onUpdate("CASCADE")
       .onDelete("CASCADE");
   });
