@@ -1,6 +1,9 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { NavContainer } from "../../Styling/ReusableStyles";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { map, logout, upload, download, browser } from 'react-icons-kit/ikons';
+import { Container, Row, Col } from 'reactstrap';
+import Icon from 'react-icons-kit';
+import './navbar.scss';
 
 class Navbar extends Component {
   constructor(props) {
@@ -12,17 +15,41 @@ class Navbar extends Component {
   //download own dataset
   //upload dataset
 
+  logout = () => {
+    localStorage.removeItem('user', 'password');
+    window.location.reload();
+  };
+
   render() {
     console.log(this.props);
     return (
-      <NavContainer>
-        <div>Welcome user : {this.props.user}</div>
-        <div>Routes for the different views:</div>
-        <Link to="/view-all">View all available data-sets</Link>
-        <Link to="/view-own">View your own uploaded data-sets</Link>
-        <Link to="/upload">Upload new data-sets</Link>
-        <Link to="/download">Download your handeled data-sets</Link>
-      </NavContainer>
+      <nav className="navbar">
+        <Container className="navbar-container" fluid>
+          <Row>
+            <p>Hello {this.props.user}</p>
+            <Link to="/view-all">
+              <Icon size={25} icon={map} />
+              Explore Data
+            </Link>
+            <Link to="/view-own">
+              <Icon size={25} icon={browser} />
+              View Your Data
+            </Link>
+            <Link to="/upload">
+              <Icon size={25} icon={upload} />
+              Upload Dataset
+            </Link>
+            <Link to="/download">
+              <Icon size={25} icon={download} />
+              Download Dataset
+            </Link>
+            <Link onClick={this.logout} to="/">
+              <Icon size={25} icon={logout} />
+              Logout
+            </Link>
+          </Row>
+        </Container>
+      </nav>
     );
   }
 }
