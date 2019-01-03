@@ -1,7 +1,9 @@
-import React, { Component } from "react";
-import Register from "./AuthWrapper/Register";
-import Login from "./AuthWrapper/Login";
-import { AuthContainer } from "../Styling/ReusableStyles";
+import React, { Component } from 'react';
+import Register from './AuthWrapper/Register';
+import Login from './AuthWrapper/Login';
+import { Container, Row, Col } from 'reactstrap';
+import '../index.scss';
+import './home.scss';
 
 const Authenticate = App =>
   class extends Component {
@@ -9,12 +11,12 @@ const Authenticate = App =>
       super(props);
       this.state = {
         loggedIn: false,
-        user: ""
+        user: ''
       };
     }
     //after component mounts, checks localStorage to see if user is there, if it is, changes state of loggedIn to true, if not, loggedIn is set to false
     componentDidMount() {
-      if (localStorage.getItem("user") && localStorage.getItem("password")) {
+      if (localStorage.getItem('user') && localStorage.getItem('password')) {
         this.setState({ loggedIn: true });
       } else {
         this.setState({ loggedIn: false });
@@ -26,8 +28,8 @@ const Authenticate = App =>
       // localStorage.setItem("user", response.data);
       // localStorage.setItem("password", response.data);
 
-      localStorage.setItem("user", props.usernameInput);
-      localStorage.setItem("password", props.passwordInput);
+      localStorage.setItem('user', props.usernameInput);
+      localStorage.setItem('password', props.passwordInput);
       //
       // const user = {
       //   usernameInput: props.usernameInput,
@@ -61,10 +63,31 @@ const Authenticate = App =>
     render() {
       if (this.state.loggedIn) return <App logout={this.logout} />;
       return (
-        <AuthContainer>
-          <Register registerNewUser={this.registerNewUser} login={this.login} />
-          <Login login={this.login} />
-        </AuthContainer>
+        <div className="home">
+          <div className="home-bg-overlay">
+            <Container className="home-container">
+              <Row>
+                <Col className="home-container-text" xs="12" md="5">
+                  <h1>Built for Data Scientists</h1>
+                  <p>Analyze. Share. Collaborate.</p>
+                  <Login login={this.login} />
+                </Col>
+                <Col className="home-dividers" md="1">
+                  <div className="divider-top" />
+                  <span>OR</span>
+                  <div className="divider-bottom" />
+                </Col>
+                <Col className="home-container-form" xs="12" md="5">
+                  <h2>Sign Up</h2>
+                  <Register
+                    registerNewUser={this.registerNewUser}
+                    login={this.login}
+                  />
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        </div>
       );
     }
   };
