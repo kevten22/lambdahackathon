@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const imagesDb = require("../helpers/imagesDb");
-
+const imageFolder = '../ImageData';
+const fs = require('fs');
 //gets all images in the db, should use helpers or the routes to select only matching collections id??
 //get route
 router.get("/", async (req, res) => {
@@ -12,6 +13,23 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: "error getting images" });
   }
 });
+
+router.get("/dogs", async(req, res) => {
+  const imagesArray = [];
+  fs.readdir(imageFolder, (err, files) =>{
+    files.forEach(file => {
+      imagesArray.push(`dogs/${file}`)
+    })
+  });
+
+  try {
+    res.status(200).json(imagesArray);
+  }
+  
+  catch (error){
+    res.status(500).json({error: "error getting images of dogs"});
+  }
+})
 //post route
 router.post("/", async (req, res) => {
   const {

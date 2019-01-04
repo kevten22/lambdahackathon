@@ -3,7 +3,7 @@ const router = express.Router();
 const usersDb = require("../helpers/usersDb");
 const collectionsDb = require("../helpers/collectionsDb");
 
-router.get('/users', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const users = usersDb.get();
         res.status(200).json(users);
@@ -12,7 +12,7 @@ router.get('/users', async (req, res) => {
     }
 });
 
-router.get('/users/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     const id = req.params.id;
     try {
         const user = usersDb.get()
@@ -23,7 +23,7 @@ router.get('/users/:id', async (req, res) => {
     }
 });
 
-router.get('/users/:id/collections' , async (req, res) => {
+router.get('/:id/collections' , async (req, res) => {
     const id = req.params.id;
     try {
         const userCollections = collectionsDb.get()
@@ -34,7 +34,7 @@ router.get('/users/:id/collections' , async (req, res) => {
     }
 });
 
-router.post('/users', async (req, res) => {
+router.post('/', async (req, res) => {
     const usernameInput  = req.body.username;
     const passwordInput = req.body.password;
     try {
@@ -46,7 +46,7 @@ router.post('/users', async (req, res) => {
 });
 
 
-router.put('/users/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
     const id = req.params.id
     const usernameInput = req.body.username;
     const passwordInput = req.body.password;
@@ -61,7 +61,7 @@ router.put('/users/:id', async (req, res) => {
 
 
 
-router.delete('/users/:id' , async (req, res) => {
+router.delete('/:id' , async (req, res) => {
     const id = req.params.id
     try {
         const user = await usersDb.remove(id);
