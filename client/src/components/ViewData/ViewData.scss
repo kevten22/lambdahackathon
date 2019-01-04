@@ -1,0 +1,26 @@
+.view-data {
+  .view-data-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+
+    h1 {
+      width: 100%;
+    }
+
+    p {
+      width: 100%;
+      margin-bottom: 3rem;
+    }
+  }
+
+  .collection-summary {
+    img {
+      width: 100%;
+      height: 100%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 10px 25px 0 rgba(0, 0, 0, 0.19);
+    }
+  }
+}
