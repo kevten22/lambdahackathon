@@ -9,7 +9,8 @@ class Collection extends Component {
     super(props);
     this.state = {
         collection:props.match.params.id,
-        urlArray:[]
+        urlArray:[],
+        clicked:false
     };
   }
 
@@ -25,14 +26,19 @@ class Collection extends Component {
       })
   }
 
+  handleClick = () => {
+      this.setState({clicked:true})
+  }
+
 
   render() {
-    console.log(this.props.match.url)
+    const button = <div>Would you like to annotate this collection?<Link onClick={this.handleClick}to={`${this.props.match.url}/annotate`}>Annotate</Link></div>
+    const annotationLink = (this.state.clicked ? null : button)
     return (
         <section className="collection">
             <div>Collection Name: {this.state.collection}</div>
             <div>Labeling Instructions:</div>
-            <div>Would you like to annotate this collection?<Link to={`${this.props.match.url}/annotate`}>Annotate</Link></div>
+            {annotationLink}
             <Route path={`${this.props.match.url}/annotate`} render={props => <Annotation {...props} array={this.state.urlArray}/>}/>
         </section>
     );
