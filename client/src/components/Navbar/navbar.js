@@ -27,7 +27,7 @@ class Navbar extends Component {
         <Container className="navbar-container" fluid>
           <Row>
             <p>Hello {this.props.user}</p>
-            <Link to="/view-all">
+            <Link to="/">
               <Icon size={25} icon={map} />
               Explore Data
             </Link>
