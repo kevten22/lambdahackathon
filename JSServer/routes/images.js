@@ -22,7 +22,7 @@ router.get("/collections/:id", async (req, res) => {
   const id = req.params.id;
   try {
     const images = await imagesDb.get()
-                                 .where('collectionID', id);
+                                 .where('collectionsID', id);
     res.status(200).json(images);
   }
   catch (error) {
