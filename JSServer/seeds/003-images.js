@@ -42,7 +42,7 @@ exports.seed = function(knex, Promise) {
           imageURL: "rowValue3",
           questionParam: "question",
           trueOption: 0,
-          false: 0,
+          falseOption: 0,
           collectionsID: 5
         },
         {
