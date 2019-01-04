@@ -17,31 +17,31 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/dogs", async (req, res) => {
-  const imagesArray = [];
+// router.get("/dogs", async (req, res) => {
+//   const imagesArray = [];
 
-  fs.readdirAsync = dirname => {
-    return new Promise((resolve, reject) => {
-      fs.readdir(dirname, (err, filenames) => {
-        if (err) reject(err);
-        else
-          filenames.forEach(file => {
-            imagesArray.push(`dogs/${file}`);
-          });
-        resolve(imagesArray);
-      });
-    });
-  };
+//   fs.readdirAsync = dirname => {
+//     return new Promise((resolve, reject) => {
+//       fs.readdir(dirname, (err, filenames) => {
+//         if (err) reject(err);
+//         else
+//           filenames.forEach(file => {
+//             imagesArray.push(`dogs/${file}`);
+//           });
+//         resolve(imagesArray);
+//       });
+//     });
+//   };
 
-  fs.readdirAsync(imageFolder)
-    .then(files => {
-      res.status(200).json(files);
-    })
-    .catch(error => {
-      console.log(error);
-      res.status(500).json({ error: "error getting images of dogs" });
-    });
-});
+//   fs.readdirAsync(imageFolder)
+//     .then(files => {
+//       res.status(200).json(files);
+//     })
+//     .catch(error => {
+//       console.log(error);
+//       res.status(500).json({ error: "error getting images of dogs" });
+//     });
+// });
 
 //post route
 router.post("/", async (req, res) => {
