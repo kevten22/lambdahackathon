@@ -2,7 +2,7 @@ const imagesDb = require("../dbConfig");
 
 module.exports = {
   get: function() {
-    return imagesDb("iamges");
+    return imagesDb("images");
   },
   insert: function(image) {
     return imagesDb("images").insert(image);
