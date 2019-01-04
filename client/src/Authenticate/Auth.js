@@ -3,7 +3,7 @@ import Register from './AuthWrapper/Register';
 import Login from './AuthWrapper/Login';
 import { Container, Row, Col } from 'reactstrap';
 import '../index.scss';
-import './home.scss';
+import './auth.scss';
 
 const Authenticate = App =>
   class extends Component {
@@ -63,7 +63,7 @@ const Authenticate = App =>
     render() {
       if (this.state.loggedIn) return <App logout={this.logout} />;
       return (
-        <div className="home">
+        <div className="auth">
           <div className="home-bg-overlay">
             <Container className="home-container">
               <Row>

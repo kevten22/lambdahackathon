@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { map, logout, upload, download, book } from 'react-icons-kit/ikons';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
 import Icon from 'react-icons-kit';
 import './navbar.scss';
 
