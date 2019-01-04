@@ -46,13 +46,7 @@ class Collection extends Component {
   render() {
     console.log(this.props)
     console.log(this.state.objArray)
-    const button = <div>Would you like to annotate this collection?<Link onClick={this.handleClick}to={`${this.props.match.url}/annotate`}>Annotate</Link></div>
-    const annotationLink = (this.state.clicked ? null : button)
-
-
-
-
-
+    
     const button = (
       <div className="annotate-confirm">
         <p>Would you like to annotate this collection?</p>

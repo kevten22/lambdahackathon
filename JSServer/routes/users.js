@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const usersDb = require("../helpers/usersDb");
 const collectionsDb = require("../helpers/collectionsDb");
+const stringify = require('json-stringify-safe');
+const knex = require('../dbConfig');
 
 router.get('/', async (req, res) => {
     try {
@@ -26,10 +28,12 @@ router.get('/:id', async (req, res) => {
 router.get('/:id/collections' , async (req, res) => {
     const id = req.params.id;
     try {
-        const userCollections = collectionsDb.get()
+        const userCollections = knex.column('collectionName').select().from('collections')
                                   .where("usersID", id);
-        res.status(200).json(user);
+        console.log(stringify(userCollections));
+        //res.status(200).send(userCollections);
     } catch (err) {
+        console.log(err);
         res.status(500).json({error: "There was an error in retrieving that user's collections"});
     }
 });

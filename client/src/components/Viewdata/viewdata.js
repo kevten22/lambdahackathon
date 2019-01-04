@@ -13,7 +13,7 @@ class ViewData extends Component {
       }
 
 async componentDidMount() {
-const collections = await axios.get("http://localhost:9000/collections");
+const collections = await axios.get(`http://localhost:9000/users/${this.state.userID}/collections`);
 console.log(collections);
 }
 
