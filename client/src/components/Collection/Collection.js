@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import {Route,Link} from "react-router-dom";
-import axios from "axios"
+import { Route, Link } from 'react-router-dom';
+import { Container, Row, Col } from 'reactstrap';
+import axios from 'axios';
 import './Collection.scss';
-import Annotation from "../Annotation/annotation"
+import Annotation from '../Annotation/annotation';
 
 class Collection extends Component {
   constructor(props) {
@@ -16,12 +17,12 @@ class Collection extends Component {
     };
   }
 
-  componentDidMount(){
-      axios
+  componentDidMount() {
+    axios
       .get(`http://localhost:9000/images/${this.state.collection}`)
       .then(response => {
-          console.log(response);
-          this.setState({urlArray:response.data})
+        console.log(response);
+        this.setState({ urlArray: response.data });
       })
       .catch(error => {
           console.log(error)
@@ -39,22 +40,47 @@ class Collection extends Component {
   }
 
   handleClick = () => {
-      this.setState({clicked:true})
-  }
-
+    this.setState({ clicked: true });
+  };
 
   render() {
     console.log(this.props)
     console.log(this.state.objArray)
     const button = <div>Would you like to annotate this collection?<Link onClick={this.handleClick}to={`${this.props.match.url}/annotate`}>Annotate</Link></div>
     const annotationLink = (this.state.clicked ? null : button)
+
+
+
+
+
+    const button = (
+      <div className="annotate-confirm">
+        <p>Would you like to annotate this collection?</p>
+        <Link
+          onClick={this.handleClick}
+          to={`${this.props.match.url}/annotate`}
+        >
+          Annotate
+        </Link>
+      </div>
+    );
+    const annotationLink = this.state.clicked ? null : button;
     return (
-        <section className="collection">
-            <div>Collection Name: {this.state.collection}</div>
-            <div>Labeling Instructions:</div>
+      <Container className="collection">
+        <Row>
+          <Col className="collection-header" xs="12">
+            <h1>Collection: {this.state.collection}</h1>
+            <p>Labeling Instructions: Lorem, ipsum dolor sit amet</p>
             {annotationLink}
-            <Route path={`${this.props.match.url}/annotate`} render={props => <Annotation {...props} array={this.state.urlArray}/>}/>
-        </section>
+          </Col>
+          <Route
+            path={`${this.props.match.url}/annotate`}
+            render={props => (
+              <Annotation {...props} array={this.state.urlArray} />
+            )}
+          />
+        </Row>
+      </Container>
     );
   }
 }

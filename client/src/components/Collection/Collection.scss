@@ -1,0 +1,51 @@
+.collection {
+  .collection-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+
+    h1 {
+      width: 100%;
+    }
+
+    p {
+      width: 100%;
+      margin-bottom: 3rem;
+    }
+    .annotate-confirm {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      text-align: center;
+
+      p {
+        width: 100%;
+      }
+
+      a {
+        width: 30%;
+        padding: 1rem;
+        border-radius: 0.3rem;
+        text-align: center;
+        background-color: #56626c;
+        color: white;
+        font-size: 1.8rem;
+        transition: all 0.3s;
+
+        &:hover {
+          background-color: #3d4853;
+        }
+      }
+    }
+  }
+
+  .carousel {
+    margin-bottom: 5rem;
+
+    img {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 10px 25px 0 rgba(0, 0, 0, 0.19);
+    }
+  }
+}
