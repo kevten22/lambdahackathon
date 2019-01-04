@@ -1,21 +1,39 @@
-.button-wrapper {
-    width: 500px;
+.annotate {
+  text-align: center;
+
+  .button-wrapper {
     display: flex;
     justify-content: space-around;
+    margin-bottom: 5rem;
+
+    .binary-button {
+      width: 30%;
+      padding: 1rem;
+      border-radius: 0.3rem;
+      text-align: center;
+      color: white;
+      font-size: 1.8rem;
+      transition: all 0.3s;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .green {
+      background: rgb(55, 228, 55);
+
+      &:hover {
+        background-color: rgb(132, 248, 132);
+      }
+    }
+
+    .red {
+      background: rgb(226, 39, 39);
+
+      &:hover {
+        background-color: lightcoral;
+      }
+    }
   }
-  
-  .binary-button {
-    width:35%;
-    height:30px;
-    font-size:20px;
-    font-weight: bold;
-    border-radius:5px;
-  }
-  
-  .green {
-    background:lightgreen;
-  }
-  
-  .red {
-    background:lightcoral;
-  }
+}
