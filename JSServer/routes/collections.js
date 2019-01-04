@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const collectionsDb = require("../helpers/collectionsDb");
+
 //read route
 router.get("/", async (req, res) => {
   try {
@@ -10,7 +11,9 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: "error getting collections" });
   }
 });
+
 //create router
+
 router.post("/", async (req, res) => {
   const { collectionName, created_at, userID } = req.body;
   if (!collectionName) {
@@ -76,5 +79,6 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json({ error: "the collection could not be deleted" });
   }
 });
-//
+
+
 module.exports = router;

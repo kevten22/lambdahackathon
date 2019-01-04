@@ -5,20 +5,20 @@ const server = express();
 const helmet = require("helmet");
 const morgan = require("morgan");
 const cors = require("cors");
+const bodyParser = require('body-parser');
+const collections = require("./routes/collections");
+const users = require("./routes/users");
+const images = require("./routes/images");
+
 
 server.use(express.json());
 server.use(helmet());
 server.use(morgan("dev"));
 server.use(cors({ origin: "http:localhost:3000", credentials: true }));
-
-server.get("/", (req, res) => {
-  res.send("<h1>server running</h1>");
-});
-//import routes
-const collections = require("./routes/collections");
-const images = require("./routes/images");
-
 server.use("/collections", collections);
+server.use("/users", users);
+server.use(bodyParser.json());
 server.use("/images", images);
+
 
 server.listen(9000, () => console.log("api running..."));

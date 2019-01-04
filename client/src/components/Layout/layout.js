@@ -1,14 +1,14 @@
 import React from 'react';
 import Footer from './footer';
-import Header from './header';
+import Navbar from '../Navbar/navbar';
 import 'bootstrap/dist/css/bootstrap-grid.min.css';
 import './layout.scss';
 import 'typeface-roboto';
 
-const Layout = ({ children }) => {
+const Layout = ({ user, children }) => {
   return (
     <>
-      <Header />
+      <Navbar user={user} />
       {children}
       <Footer year={new Date().getFullYear()} />
     </>
