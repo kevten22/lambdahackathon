@@ -16,7 +16,9 @@ server.get("/", (req, res) => {
 });
 //import routes
 const collections = require("./routes/collections");
+const images = require("./routes/images");
 
 server.use("/collections", collections);
+server.use("/images", images);
 
 server.listen(9000, () => console.log("api running..."));

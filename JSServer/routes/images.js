@@ -42,4 +42,51 @@ router.post("/", async (req, res) => {
 //edit route
 router.put("/:id", async (req, res) => {
   const id = req.params.id;
+  const {
+    imageURL,
+    questionParam,
+    trueOption,
+    falseOption,
+    collectionsID
+  } = req.body;
+  if (!imageURL) {
+    res.status(400).json({ error: "please provide image file" });
+  } else if (!questionParam) {
+    res.status(400).json({ error: "must provide annotation params" });
+  } else if (!collectionsID) {
+    res.status(400).json({
+      error:
+        "need to be able to reference collection, please provide collectionsID"
+    });
+  }
+  try {
+    const images = await imagesDb.update(id, req.body);
+    if (!images) {
+      res.status(404).json({
+        error: "the image with the specified id does not exist"
+      });
+    }
+    res.status(200).json(req.body);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "the image information could not be modified" });
+  }
 });
+//delete route
+router.delete("/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const image = await imagesDb.remove(id);
+    if (!image) {
+      res.status(404).json({
+        message: "the image with the specified ID does not exist"
+      });
+    }
+    res.status(200).json({ message: "image deleted" });
+  } catch (error) {
+    res.status(500).json({ error: "the image could not be deleted" });
+  }
+});
+
+module.exports = router;
