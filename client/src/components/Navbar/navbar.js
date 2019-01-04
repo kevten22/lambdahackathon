@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { map, logout, upload, download, browser } from 'react-icons-kit/ikons';
+import { NavLink } from 'react-router-dom';
+import { map, logout, upload, download, book } from 'react-icons-kit/ikons';
 import { Container, Row, Col } from 'reactstrap';
 import Icon from 'react-icons-kit';
 import './navbar.scss';
@@ -27,26 +27,26 @@ class Navbar extends Component {
         <Container className="navbar-container" fluid>
           <Row>
             <p>Hello {this.props.user}</p>
-            <Link to="/">
+            <NavLink exact to="/" activeClassName="selected">
               <Icon size={25} icon={map} />
               Explore Data
-            </Link>
-            <Link to="/view-own">
-              <Icon size={25} icon={browser} />
+            </NavLink>
+            <NavLink to="/view-own" activeClassName="selected">
+              <Icon size={25} icon={book} />
               View Your Data
-            </Link>
-            <Link to="/upload">
+            </NavLink>
+            <NavLink to="/upload" activeClassName="selected">
               <Icon size={25} icon={upload} />
               Upload Dataset
-            </Link>
-            <Link to="/download">
+            </NavLink>
+            <NavLink to="/download" activeClassName="selected">
               <Icon size={25} icon={download} />
               Download Dataset
-            </Link>
-            <Link onClick={this.logout} to="/">
+            </NavLink>
+            <NavLink onClick={this.logout} to="/">
               <Icon size={25} icon={logout} />
               Logout
-            </Link>
+            </NavLink>
           </Row>
         </Container>
       </nav>
