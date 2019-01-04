@@ -5,6 +5,8 @@ const imageFolder = "./ImageData/dogs";
 const fs = require('fs');
 //gets all images in the db, should use helpers or the routes to select only matching collections id??
 //get route
+router.use('/dogs', express.static('ImageData/dogs'));
+
 router.get("/", async (req, res) => {
   try {
     const images = await imagesDb.get();
