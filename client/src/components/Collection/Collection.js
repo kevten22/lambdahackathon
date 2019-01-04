@@ -9,9 +9,11 @@ class Collection extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      collection: props.match.params.id,
-      urlArray: [],
-      clicked: false
+        collectionID:props.id,
+        collection:props.match.params.id,
+        urlArray:[],
+        objArray:[],
+        clicked:false
     };
   }
 
@@ -23,8 +25,18 @@ class Collection extends Component {
         this.setState({ urlArray: response.data });
       })
       .catch(error => {
-        console.log(error);
-      });
+          console.log(error)
+      })
+
+      axios
+      .get(`http://localhost:9000/images`)
+      .then(response => {
+          console.log(response);
+          this.setState({objArray:response.data})
+      })
+      .catch(error => {
+          console.log(error)
+      })
   }
 
   handleClick = () => {
@@ -32,6 +44,15 @@ class Collection extends Component {
   };
 
   render() {
+    console.log(this.props)
+    console.log(this.state.objArray)
+    const button = <div>Would you like to annotate this collection?<Link onClick={this.handleClick}to={`${this.props.match.url}/annotate`}>Annotate</Link></div>
+    const annotationLink = (this.state.clicked ? null : button)
+
+
+
+
+
     const button = (
       <div className="annotate-confirm">
         <p>Would you like to annotate this collection?</p>
