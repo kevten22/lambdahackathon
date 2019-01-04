@@ -52,7 +52,6 @@ class Annotation extends Component {
       <Carousel image={this.state.imagesArray[this.state.currentIndex]} />
     );
     const main = () => {
-      console.log(this.state.currentIndex);
       if (this.state.arrayLength === 0) {
         return loading;
       } else if (this.state.currentIndex > this.state.arrayLength - 1) {
@@ -62,6 +61,7 @@ class Annotation extends Component {
         return carousel;
       }
     };
+
     return (
       <Container className="annotate">
         <Row>

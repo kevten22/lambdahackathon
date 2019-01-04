@@ -26,6 +26,7 @@ router.get("/collections/:id", async (req, res) => {
     res.status(200).json(images);
   }
   catch (error) {
+    console.log(error)
     res.status(500).json({error: "Error getting images from that collection"});
   }
 })
