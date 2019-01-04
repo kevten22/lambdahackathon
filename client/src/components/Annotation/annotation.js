@@ -8,25 +8,36 @@ class Annotation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      imagesArray: props.array,
-      boolArray: new Array(props.array.length).fill(null),
-      currentIndex: 0,
-      arrayLength: props.array.length
+        colObj:props.obj,
+        imagesArray: props.array,
+        currentIndex: 0,
+        arrayLength: props.array.length
     };
   }
 
   clickHandler = val => {
-    const array = this.state.boolArray.map((ele, index) => {
-      if (index === Number(this.state.currentIndex)) {
-        return val;
-      } else {
-        return ele;
-      }
+    const array = this.state.colObj.map((ele,index) => {
+        console.log(ele)
+        if(Number(ele.id)===index+1){
+            if(val){
+                ele.trueOption += 1
+                return ele
+            } else {
+                ele.falseOption += 1
+                return ele
+            }
+        } 
     });
+    axios
+    .put(`http://localhost:9000/images/${this.state.currentIndex+1}`,this.state.colObj[this.state.currentIndex])
+    .then(response => console.log(response.data))
+    .catch(error => console.log(error))
+    console.log(array)
     this.setState({
-      boolArray: array,
+      colObj: array,
       currentIndex: this.state.currentIndex + 1
     });
+    
   };
 
   render() {

@@ -13,26 +13,23 @@ class Collection extends Component {
         collection:props.match.params.id,
         urlArray:[],
         objArray:[],
+        trueArray:[],
+        falseArray:[],
         clicked:false
     };
   }
 
   componentDidMount() {
-    axios
-      .get(`http://localhost:9000/images/${this.state.collection}`)
-      .then(response => {
-        console.log(response);
-        this.setState({ urlArray: response.data });
-      })
-      .catch(error => {
-          console.log(error)
-      })
-
       axios
-      .get(`http://localhost:9000/images`)
+      .get(`http://localhost:9000/images/collections/${this.state.collectionID}`)
       .then(response => {
           console.log(response);
-          this.setState({objArray:response.data})
+          this.setState({
+              objArray:response.data,
+              urlArray:response.data.map(ele => ele.imageURL),
+              trueArray:response.data.map(ele => ele.trueOption),
+              falseArray:response.data.map(ele => ele.falseOption)
+            })
       })
       .catch(error => {
           console.log(error)
@@ -45,14 +42,7 @@ class Collection extends Component {
 
   render() {
     console.log(this.props)
-    console.log(this.state.objArray)
-    const button = <div>Would you like to annotate this collection?<Link onClick={this.handleClick}to={`${this.props.match.url}/annotate`}>Annotate</Link></div>
-    const annotationLink = (this.state.clicked ? null : button)
-
-
-
-
-
+    console.log(this.state.urlArray)
     const button = (
       <div className="annotate-confirm">
         <p>Would you like to annotate this collection?</p>
@@ -76,7 +66,7 @@ class Collection extends Component {
           <Route
             path={`${this.props.match.url}/annotate`}
             render={props => (
-              <Annotation {...props} array={this.state.urlArray} />
+              <Annotation {...props} array={this.state.urlArray} obj={this.state.objArray} id={this.state.collectionID}/>
             )}
           />
         </Row>
