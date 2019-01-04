@@ -16,7 +16,14 @@ class App extends Component {
   //filter function to filter from the datasets, to render only the user's datasets
 
   render() {
-    return <Layout user={this.state.user} />;
+    return (
+    <Layout user={this.state.user}>
+      <Route exact path="/" render={prop => (<div> Explore data. Seed data received from GET request</div>)}/>
+      <Route path="/view-own" render={prop => (<div> View your data. User data received from GET request </div>)}/>
+      <Route path="/upload" render={prop => (<div> Upload data.</div>)}/>
+      <Route path="/download" render={prop => (<div> Download data. </div>)}/>
+    </Layout>
+    );
   }
 }
 
