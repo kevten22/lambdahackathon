@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import Layout from './components/Layout/layout';
 import axios from "axios";
 import Home from "./components/Home/Home";
+import Collection from "./components/Collection/Collection";
 
 class App extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class App extends Component {
     return (
     <Layout user={this.state.user}>
       <Route exact path="/" render={props => <Home {...props} collections={this.state.seedData}/> }/>
-      <Route path="/collection/:id" render={props => (<div> View your data. User data received from GET request </div>)}/>
+      <Route path="/collection/:id" render={props => <Collection {...props}/>}/>
       <Route path="/view-own" render={props => (<div> View your data. User data received from GET request </div>)}/>
       <Route path="/upload" render={props => (<div> Upload data.</div>)}/>
       <Route path="/download" render={props => (<div> Download data. </div>)}/>
