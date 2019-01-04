@@ -8,7 +8,7 @@ class Annotation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        colObj:props.obj,
+        colObj:[...props.obj],
         imagesArray: props.array,
         currentIndex: 0,
         arrayLength: props.array.length
@@ -16,28 +16,27 @@ class Annotation extends Component {
   }
 
   clickHandler = val => {
-    const array = this.state.colObj.map((ele,index) => {
-        console.log(ele)
-        if(Number(ele.id)===index+1){
-            if(val){
-                ele.trueOption += 1
-                return ele
-            } else {
-                ele.falseOption += 1
-                return ele
-            }
-        } 
+    const tempArray = [];
+    this.state.colObj.forEach( ele => {
+        tempArray.push({...ele});
     });
+
+    if(val){
+        tempArray[this.state.currentIndex].trueOption += 1
+    } else {
+        tempArray[this.state.currentIndex].falseOption += 1
+    }
+
     axios
-    .put(`http://localhost:9000/images/${this.state.currentIndex+1}`,this.state.colObj[this.state.currentIndex])
-    .then(response => console.log(response.data))
+    .put(`http://localhost:9000/images/${this.state.currentIndex+1}`,tempArray[this.state.currentIndex])
+    .then(response => {
+        console.log(response.data);
+        this.setState({
+            colObj: tempArray,
+            currentIndex: this.state.currentIndex + 1
+          });
+    })
     .catch(error => console.log(error))
-    console.log(array)
-    this.setState({
-      colObj: array,
-      currentIndex: this.state.currentIndex + 1
-    });
-    
   };
 
   render() {
