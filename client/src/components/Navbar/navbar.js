@@ -29,23 +29,23 @@ class Navbar extends Component {
             <p>Hello {this.props.user}</p>
             <NavLink exact to="/" activeClassName="selected">
               <Icon size={25} icon={map} />
-              Explore Data
+              <span className="d-none d-md-inline-block">Explore Data</span>
             </NavLink>
             <NavLink to="/view-own" activeClassName="selected">
               <Icon size={25} icon={book} />
-              View Your Data
+              <span className="d-none d-md-inline-block">View Your Data</span>
             </NavLink>
             <NavLink to="/upload" activeClassName="selected">
               <Icon size={25} icon={upload} />
-              Upload Dataset
+              <span className="d-none d-md-inline-block">Upload Dataset</span>
             </NavLink>
             <NavLink to="/download" activeClassName="selected">
               <Icon size={25} icon={download} />
-              Download Dataset
+              <span className="d-none d-md-inline-block">Download Dataset</span>
             </NavLink>
             <NavLink onClick={this.logout} to="/">
               <Icon size={25} icon={logout} />
-              Logout
+              <span className="d-none d-md-inline-block">Logout</span>
             </NavLink>
           </Row>
         </Container>
