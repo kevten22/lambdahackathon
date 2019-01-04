@@ -13,7 +13,7 @@ const Home = props => {
         </Col>
         {props.collections.map((ele, index) => (
           <Col key={index} xs="12" md="4">
-            <Link to={`/collection/${ele.collectionName}`}>
+            <Link onClick={() => props.click(ele.id)} to={`/collection/${ele.collectionName}`}>
               <div className="card">
                 {ele.collectionName}
                 <div className="card-overlay">

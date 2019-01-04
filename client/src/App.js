@@ -10,7 +10,8 @@ class App extends Component {
     super(props);
     this.state = {
       user: 'placeholder',
-      seedData:[]
+      seedData:[],
+      collID:null
     };
   }
   // component did mount update this.state.user to the login user.
@@ -28,11 +29,15 @@ class App extends Component {
   }
   //filter function to filter from the datasets, to render only the user's datasets
 
+  handleClick = (id) => {
+    this.setState({collID:id})
+  }
+
   render() {
     return (
     <Layout user={this.state.user}>
-      <Route exact path="/" render={props => <Home {...props} collections={this.state.seedData}/> }/>
-      <Route path="/collection/:id" render={props => <Collection {...props}/>}/>
+      <Route exact path="/" render={props => <Home {...props} collections={this.state.seedData} click={this.handleClick}/> }/>
+      <Route path="/collection/:id" render={props => <Collection {...props} id={this.state.collID}/>}/>
       <Route path="/view-own" render={props => (<div> View your data. User data received from GET request </div>)}/>
       <Route path="/upload" render={props => (<div> Upload data.</div>)}/>
       <Route path="/download" render={props => (<div> Download data. </div>)}/>
