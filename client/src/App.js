@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Layout from './components/Layout/layout';
 import axios from "axios";
+import Home from "./components/Home/Home";
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class App extends Component {
   componentDidMount() {
     this.setState({ user: localStorage.getItem('user') });
     axios
-    .get("http://localhost:5000/data")
+    .get("http://localhost:9000/collections")
     .then(response => {
       console.log(response.data)
       this.setState({seedData:response.data});
@@ -29,10 +30,11 @@ class App extends Component {
   render() {
     return (
     <Layout user={this.state.user}>
-      <Route exact path="/" render={prop => (<div> Explore data. Seed data received from GET request</div>)}/>
-      <Route path="/view-own" render={prop => (<div> View your data. User data received from GET request </div>)}/>
-      <Route path="/upload" render={prop => (<div> Upload data.</div>)}/>
-      <Route path="/download" render={prop => (<div> Download data. </div>)}/>
+      <Route exact path="/" render={props => <Home {...props} collections={this.state.seedData}/> }/>
+      <Route path="/collection/:id" render={props => (<div> View your data. User data received from GET request </div>)}/>
+      <Route path="/view-own" render={props => (<div> View your data. User data received from GET request </div>)}/>
+      <Route path="/upload" render={props => (<div> Upload data.</div>)}/>
+      <Route path="/download" render={props => (<div> Download data. </div>)}/>
     </Layout>
     );
   }
