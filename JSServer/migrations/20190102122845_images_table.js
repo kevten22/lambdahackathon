@@ -3,8 +3,8 @@ exports.up = function(knex, Promise) {
     tbl.increments();
     tbl.string("imageURL").notNullable();
     tbl.string("questionParam").notNullable();
-    tbl.integer("true");
-    tbl.integer("false");
+    tbl.integer("trueOption");
+    tbl.integer("falseOption");
     tbl
       .integer("collectionsID")
       .unsigned()

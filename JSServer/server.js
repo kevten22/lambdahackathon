@@ -8,6 +8,8 @@ const cors = require("cors");
 const bodyParser = require('body-parser');
 const collections = require("./routes/collections");
 const users = require("./routes/users");
+const images = require("./routes/images");
+
 
 server.use(express.json());
 server.use(helmet());
@@ -16,7 +18,7 @@ server.use(cors({ origin: "http:localhost:3000", credentials: true }));
 server.use("/collections", collections);
 server.use("/users", users);
 server.use(bodyParser.json());
-
+server.use("/images", images);
 
 
 server.listen(9000, () => console.log("api running..."));
