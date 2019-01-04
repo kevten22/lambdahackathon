@@ -12,6 +12,17 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+    const id = req.params.id
+  try {
+    const collection = await collectionsDb.get()
+                                          .where('id', id);
+    res.status(200).json(collection);
+  }
+  catch (error) {
+    res.status(500).json({ error: "Error retrieving that specific collection."});
+  }
+})
 //create router
 
 router.post("/", async (req, res) => {
