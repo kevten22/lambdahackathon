@@ -1,17 +1,28 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Layout from './components/Layout/layout';
+import axios from "axios";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: 'placeholder'
+      user: 'placeholder',
+      seedData:[]
     };
   }
   // component did mount update this.state.user to the login user.
   componentDidMount() {
     this.setState({ user: localStorage.getItem('user') });
+    axios
+    .get("http://localhost:5000/data")
+    .then(response => {
+      console.log(response.data)
+      this.setState({seedData:response.data});
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
   //filter function to filter from the datasets, to render only the user's datasets
 
