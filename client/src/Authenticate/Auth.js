@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Register from './AuthWrapper/Register';
 import Login from './AuthWrapper/Login';
 import { Container, Row, Col } from 'reactstrap';
+import { cube } from 'react-icons-kit/ionicons/cube';
+import Icon from 'react-icons-kit';
 import '../index.scss';
 import './auth.scss';
 
@@ -67,6 +69,10 @@ const Authenticate = App =>
           <div className="auth-bg-overlay">
             <Container className="auth-container">
               <Row>
+                <Col className="brand" xs="12">
+                  <Icon size={30} icon={cube} />
+                  <span>DataCollab</span>
+                </Col>
                 <Col className="auth-container-text" xs="12" md="5">
                   <h1>Built for Data Scientists</h1>
                   <p>Analyze. Share. Collaborate.</p>
