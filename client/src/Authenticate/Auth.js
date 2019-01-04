@@ -64,20 +64,20 @@ const Authenticate = App =>
       if (this.state.loggedIn) return <App logout={this.logout} />;
       return (
         <div className="auth">
-          <div className="home-bg-overlay">
-            <Container className="home-container">
+          <div className="auth-bg-overlay">
+            <Container className="auth-container">
               <Row>
-                <Col className="home-container-text" xs="12" md="5">
+                <Col className="auth-container-text" xs="12" md="5">
                   <h1>Built for Data Scientists</h1>
                   <p>Analyze. Share. Collaborate.</p>
                   <Login login={this.login} />
                 </Col>
-                <Col className="home-dividers" md="1">
+                <Col className="auth-dividers" md="1">
                   <div className="divider-top" />
                   <span>OR</span>
                   <div className="divider-bottom" />
                 </Col>
-                <Col className="home-container-form" xs="12" md="5">
+                <Col className="auth-container-form" xs="12" md="5">
                   <h2>Sign Up</h2>
                   <Register
                     registerNewUser={this.registerNewUser}

@@ -5,9 +5,10 @@
   background-attachment: fixed;
   background-position: center;
   height: 100vh;
+  width: 100%;
   text-align: center;
 
-  .home-bg-overlay {
+  .auth-bg-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -16,7 +17,7 @@
     background: rgba(0, 0, 0, 0.6);
   }
 
-  .home-container {
+  .auth-container {
     margin-top: 20rem;
     height: 50%;
 
@@ -24,7 +25,7 @@
       height: 100%;
     }
 
-    .home-container-text {
+    .auth-container-text {
       align-self: center;
 
       h1 {
@@ -61,7 +62,7 @@
       }
     }
 
-    .home-dividers {
+    .auth-dividers {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -85,7 +86,7 @@
       }
     }
 
-    .home-container-form {
+    .auth-container-form {
       align-self: center;
 
       h2 {
