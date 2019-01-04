@@ -14,7 +14,7 @@ const images = require("./routes/images");
 server.use(express.json());
 server.use(helmet());
 server.use(morgan("dev"));
-server.use(cors({ origin: "http:localhost:3000", credentials: true }));
+server.use(cors({ origin: "http://localhost:3000", credentials: true }));
 server.use("/collections", collections);
 server.use("/users", users);
 server.use(bodyParser.json());
