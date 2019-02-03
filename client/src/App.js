@@ -4,6 +4,8 @@ import Layout from './components/Layout/layout';
 import axios from "axios";
 import Home from "./components/Home/Home";
 import Collection from "./components/Collection/Collection";
+import ViewData from "./components/ViewData/ViewData";
+import Upload from "./components/Upload/Upload"
 
 class App extends Component {
   constructor(props) {
@@ -38,8 +40,8 @@ class App extends Component {
     <Layout user={this.state.user}>
       <Route exact path="/" render={props => <Home {...props} collections={this.state.seedData} click={this.handleClick}/> }/>
       <Route path="/collection/:id" render={props => <Collection {...props} id={this.state.collID}/>}/>
-      <Route path="/view-own" render={props => (<div> View your data. User data received from GET request </div>)}/>
-      <Route path="/upload" render={props => (<div> Upload data.</div>)}/>
+      <Route path="/view-own" render={props => <ViewData {...props} id={1}/>}/>
+      <Route path="/upload" render={props => <Upload {...props}/>}/>
       <Route path="/download" render={props => (<div> Download data. </div>)}/>
     </Layout>
     );
